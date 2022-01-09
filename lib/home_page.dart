@@ -16,6 +16,11 @@ class _HomePageState extends State < HomePage > {
   TextEditingController depositemoneyController = TextEditingController();
   TextEditingController depositeDateController = TextEditingController();
   TextEditingController depositeRemarksController = TextEditingController();
+
+  TextEditingController widthdrawmoneyController = TextEditingController();
+  TextEditingController widthdrawDateController = TextEditingController();
+  TextEditingController widthdrawRemarksController = TextEditingController();
+
   int defaultBlance = 500;
   @override
   Widget build(BuildContext context) {
@@ -64,7 +69,6 @@ class _HomePageState extends State < HomePage > {
                                   children: [
                                     TextField(
                                       controller: depositemoneyController,
-                                      keyboardType: TextInputType.number,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly
                                       ],
@@ -90,15 +94,15 @@ class _HomePageState extends State < HomePage > {
                                         border: OutlineInputBorder()
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 10, ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         TextButton(onPressed: () {
-                                               depositemoneyController.clear();
-                                               depositeDateController.clear();
-                                               depositeRemarksController.clear();
-                                               Navigator.pop(context);
+                                            depositemoneyController.clear();
+                                            depositeDateController.clear();
+                                            depositeRemarksController.clear();
+                                            Navigator.pop(context);
                                           }, child: Text('Clear'),
                                           style: TextButton.styleFrom(
                                             primary: Colors.white,
@@ -107,24 +111,23 @@ class _HomePageState extends State < HomePage > {
                                           ),
                                         ),
                                         TextButton(onPressed: () {
-                                               print(depositemoneyController.text);
-                                               print(depositeDateController.text);
-                                               print(depositeRemarksController.text);
-                                               depositemoneyController.clear();
-                                               depositeDateController.clear();
-                                               depositeRemarksController.clear();
-                                               Navigator.pop(context);
-                                               var depositeInt = depositemoneyController.value;
-                                               print(depositeInt.text);
-                                               defaultBlance = defaultBlance +  55;
-                                               
-                                                
-                                               setState(() {
-                                                 
-                                               });
-                                               
-                                               
-                                               
+                                            print(depositemoneyController.text);
+                                            print(depositeDateController.text);
+                                            print(depositeRemarksController.text);
+                                            depositemoneyController.clear();
+                                            depositeDateController.clear();
+                                            depositeRemarksController.clear();
+                                            Navigator.pop(context);
+
+                                            defaultBlance = defaultBlance + 55;
+
+
+                                            setState(() {
+
+                                            });
+
+
+
                                           }, child: Text('Deposite'),
                                           style: TextButton.styleFrom(
                                             primary: Colors.white,
@@ -151,7 +154,7 @@ class _HomePageState extends State < HomePage > {
 
                       TextButton(onPressed: () {
 
-                        showDialog(context: context, builder: (context) {
+                          showDialog(context: context, builder: (context) {
                             return AlertDialog(
                               title: Text('Widthraw Your Money'),
                               content: Container(
@@ -166,7 +169,7 @@ class _HomePageState extends State < HomePage > {
 
 
                                     TextField(
-                                      keyboardType: TextInputType.number,
+                                      controller: widthdrawmoneyController,
                                       inputFormatters: [
                                         FilteringTextInputFormatter.digitsOnly
                                       ],
@@ -178,6 +181,7 @@ class _HomePageState extends State < HomePage > {
                                     ),
                                     SizedBox(height: 10, ),
                                     TextField(
+                                      controller: widthdrawDateController,
                                       decoration: InputDecoration(
                                         hintText: 'Widtraw Date',
                                         border: OutlineInputBorder()
@@ -185,12 +189,13 @@ class _HomePageState extends State < HomePage > {
                                     ),
                                     SizedBox(height: 10, ),
                                     TextField(
+                                      controller: widthdrawRemarksController,
                                       decoration: InputDecoration(
                                         hintText: 'Remarks',
                                         border: OutlineInputBorder()
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(height: 10, ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -205,6 +210,17 @@ class _HomePageState extends State < HomePage > {
                                         ),
                                         TextButton(onPressed: () {
 
+                                            widthdrawmoneyController.clear();
+                                            widthdrawDateController.clear();
+                                            widthdrawRemarksController.clear();
+                                            Navigator.pop(context);
+                                            
+                                            String a = widthdrawmoneyController.text;
+                                            
+                                            defaultBlance = defaultBlance - int.parse(a);
+                                            setState(() {
+
+                                            });
                                           }, child: Text('Widthraw'),
                                           style: TextButton.styleFrom(
                                             primary: Colors.white,
@@ -232,31 +248,31 @@ class _HomePageState extends State < HomePage > {
                     ],
                   ),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 30, ),
                 Container(
-                  child: Text('Your Transiction History',style: TextStyle(
+                  child: Text('Your Transiction History', style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.w600
-                  ),),
+                  ), ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20, ),
 
-                
+
                 Container(
                   child: Column(
                     children: [
                       Card(
-                    elevation: 10,
-                    child: ListTile(
-                      leading: Text('500TK',style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600
-                      ),),
-                      title: Text('Deposite'),
-                      subtitle: Text('Date: 27/02/21'),
-                      trailing: Icon(Icons.delete),
-                    ),
-                  ),
+                        elevation: 10,
+                        child: ListTile(
+                          leading: Text('500TK', style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600
+                          ), ),
+                          title: Text('Deposite'),
+                          subtitle: Text('Date: 27/02/21'),
+                          trailing: Icon(Icons.delete),
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -265,20 +281,20 @@ class _HomePageState extends State < HomePage > {
           ),
 
           Expanded(child: Container(
-              width: 200,
-              height: 500,
-              child: CustomScrollView(
-                slivers: [
-                  SliverFixedExtentList(delegate: SliverChildListDelegate([
-                    Text('Hello'),
-                    Text('Hello'),
-                    Text('Hello'),
-                    
-                    
-                  ]), itemExtent: 1),
-                    ],
-                  ),
-                ),)
+            width: 200,
+            height: 500,
+            child: CustomScrollView(
+              slivers: [
+                SliverFixedExtentList(delegate: SliverChildListDelegate([
+                  Text('Hello'),
+                  Text('Hello'),
+                  Text('Hello'),
+
+
+                ]), itemExtent: 1),
+              ],
+            ),
+          ), )
         ],
       ),
     );
