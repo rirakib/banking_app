@@ -69,11 +69,10 @@ class _HomePageState extends State < HomePage > {
                                   children: [
                                     TextField(
                                       controller: depositemoneyController,
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.digitsOnly
-                                      ],
-                                      decoration: InputDecoration(
-
+                                      // inputFormatters: [
+                                      //   FilteringTextInputFormatter.digitsOnly
+                                      // ],
+                                      decoration: const InputDecoration(
                                         hintText: 'The amount of money',
                                         border: OutlineInputBorder()
                                       ),
@@ -111,20 +110,19 @@ class _HomePageState extends State < HomePage > {
                                           ),
                                         ),
                                         TextButton(onPressed: () {
-                                            print(depositemoneyController.text);
-                                            print(depositeDateController.text);
-                                            print(depositeRemarksController.text);
-                                            depositemoneyController.clear();
-                                            depositeDateController.clear();
-                                            depositeRemarksController.clear();
-                                            Navigator.pop(context);
+                                            
+                                            
 
-                                            defaultBlance = defaultBlance + 55;
+                                            defaultBlance = defaultBlance + int.parse(depositemoneyController.text);
 
 
                                             setState(() {
 
                                             });
+                                            depositemoneyController.clear();
+                                            depositeDateController.clear();
+                                            depositeRemarksController.clear();
+                                            Navigator.pop(context);
 
 
 
@@ -210,17 +208,20 @@ class _HomePageState extends State < HomePage > {
                                         ),
                                         TextButton(onPressed: () {
 
+                                            
+                                            
+                                            
+                                            int a = int.parse(widthdrawmoneyController.text);
+                                            
+                                            defaultBlance = defaultBlance - a;
+                                            setState(() {
+
+                                            });
                                             widthdrawmoneyController.clear();
                                             widthdrawDateController.clear();
                                             widthdrawRemarksController.clear();
                                             Navigator.pop(context);
-                                            
-                                            String a = widthdrawmoneyController.text;
-                                            
-                                            defaultBlance = defaultBlance - int.parse(a);
-                                            setState(() {
 
-                                            });
                                           }, child: Text('Widthraw'),
                                           style: TextButton.styleFrom(
                                             primary: Colors.white,
@@ -279,6 +280,7 @@ class _HomePageState extends State < HomePage > {
               ],
             ),
           ),
+          
 
           Expanded(child: Container(
             width: 200,
